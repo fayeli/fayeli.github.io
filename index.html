@@ -1,23 +1,13 @@
 ---
-layout: default
+layout: home
+custom_css: home
 ---
 
-<div class="home">
-
-  <h1 class="page-heading">Posts</h1>
-
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
+<div class="frontpanel">
+  <img src="{{ site.baseurl }}/assets/img/profilepicsquare.jpg" class="profilepic">
+  <h1> Hello, I'm Faye.</h1>
+  <h3> I am a Computer Science student at Rose-Hulman Institute of Technology. </h3>
+  <h3> I like to design & develop software applications. My latest obsessions are VR/AR technology, drawing & sushi. </h3>
+  <h3> I am currently looking for oppotunities after graduation. My resume is available here: <a href="https://docs.google.com/document/d/1igPIrkxTg9I3Th_vjtvmGE3VOLJf8-IdWIkI3Sh_K0M/edit?usp=sharing">Web Development</a>, <a href="https://docs.google.com/document/d/15YQzTAXkE1L1IBDrlmpQzoqc9efVVhQFWg11fVvEsTU/edit?usp=sharing">VR/Graphics/Game Development</a>.</h3>
+  
 </div>
