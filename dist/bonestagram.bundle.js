@@ -601,41 +601,17 @@ var bonestagram =
 				}
 			}
 			var setupCamera = function(){
-				navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-				window.URL = window.URL || window.webkitURL || window.msURL || window.mozURL;
-						
-				// check for camerasupport
-				if (navigator.getUserMedia) {
-					// set up stream			
-					// chrome 19 shim
-					var videoSelector = {video : true};
-					if (window.navigator.appVersion.match(/Chrome\/(.*?) /)) {
-						var chromeVersion = parseInt(window.navigator.appVersion.match(/Chrome\/(\d+)\./)[1], 10);
-						if (chromeVersion < 20) {
-							videoSelector = "video";
-						}
+				console.log('setup camera with new web standards');
+				var constraints = { audio: true, video: { width: 1280, height: 720 } }; 
+				navigator.mediaDevices.getUserMedia(constraints)
+					.then(function(mediaStream) {
+						var video = document.querySelector('video');
+						video.srcObject = mediaStream;
+						video.onloadedmetadata = function(e) {
+						video.play();
 					};
-							
-					navigator.getUserMedia(videoSelector, 
-						function( stream ) {
-							if (vid.mozCaptureStream) {
-								vid.mozSrcObject = stream;
-							} else {
-								vid.src = (window.URL && window.URL.createObjectURL(stream)) || stream;
-							}
-
-							vid.play();
-						},
-
-						function() {
-							//insertAltVideo(vid);
-							console.log("There was problem fetching your webcam stream. Please check your privacy settings and try again.");
-						});
-
-				} else {
-					//insertAltVideo(vid)
-					alert("There seems to be no support for getUserMedia on your browser and we are unable to fetch your webcam stream. ): ");
-				}					
+				})
+				.catch(function(err) { console.log(err.name + ": " + err.message); });
 			}
 
 			// called when video is ready to start playing
