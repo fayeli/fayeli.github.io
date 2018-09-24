@@ -602,7 +602,7 @@ var bonestagram =
 			}
 			var setupCamera = function(){
 				console.log('setup camera with new web standards');
-				var constraints = { audio: true, video: { width: 1280, height: 720 } }; 
+				var constraints = { audio: false, video: { width: 400, height: 300 } }; 
 				navigator.mediaDevices.getUserMedia(constraints)
 					.then(function(mediaStream) {
 						var video = document.querySelector('video');
